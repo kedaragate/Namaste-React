@@ -77,9 +77,8 @@ body {
 }
 
 .restaurant-card:hover {
-  border-bottom: 1px solid rgb(190, 190, 190);
   transition: 0.5s ease-in-out;
-  background-color: wheat;
+  border: 0.5px solid black;
 }
 
 .restaurant-img-container {
