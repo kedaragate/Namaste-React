@@ -1,5 +1,3 @@
-import React from "react";
-
 const HeaderComponent = () => (
   <header className="nav-bar">
     <div className="logo-container">
