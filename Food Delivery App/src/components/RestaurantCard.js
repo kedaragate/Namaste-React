@@ -2,7 +2,7 @@ import { IMG_URL } from "../utils/constants";
 
 const RestaurantCard = ({ resData }) => {
   return (
-    <div className="restaurant-card" key={resData.id}>
+    <div className="restaurant-card">
       <div className="restaurant-img-container">
         <img src={IMG_URL + resData.cloudinaryImageId} alt="restaurant-image" />
       </div>
@@ -11,7 +11,6 @@ const RestaurantCard = ({ resData }) => {
         <span className="restaurant-rating text-black">
           {resData.avgRating}
         </span>
-
         <p className="cuisines text-black">{resData.cuisines.join(", ")}</p>
       </div>
     </div>
