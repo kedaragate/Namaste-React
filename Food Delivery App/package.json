@@ -105,8 +105,7 @@
   },
   "scripts": {
     "test": "jest",
-    "start": "parcel index.html",
-    "build":"parcel index.html"
+    "start": "parcel index.html"
   },
   "author": "Kedar Agate",
   "license": "ISC"

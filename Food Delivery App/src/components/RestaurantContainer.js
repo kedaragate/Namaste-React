@@ -15,7 +15,8 @@ const RestaurantContainer = () => {
     const data = await fetch(RESTAURANT_DATA_URL);
     const result = await data.json();
     setListOfRes(
-      result.data.cards[2].card.card.gridElements.infoWithStyle.restaurants
+      result.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
     );
   };
 
