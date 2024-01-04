@@ -3,6 +3,7 @@ import { resList } from "../utils/mockData";
 import { useState, useEffect } from "react";
 import { async } from "regenerator-runtime";
 import { RESTAURANT_DATA_URL } from "../utils/constants";
+import ShimmerCard from "./ShimmerCard";
 
 const RestaurantContainer = () => {
   const [listOfRes, setListOfRes] = useState([]);
@@ -14,8 +15,9 @@ const RestaurantContainer = () => {
   const fetchRestaurants = async () => {
     const data = await fetch(RESTAURANT_DATA_URL);
     const result = await data.json();
+
     setListOfRes(
-      result.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+      result?.data.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
   };
