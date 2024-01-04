@@ -5,7 +5,7 @@ import { async } from "regenerator-runtime";
 import { RESTAURANT_DATA_URL } from "../utils/constants";
 
 const RestaurantContainer = () => {
-  const [listOfRes, setListOfRes] = useState(resList);
+  const [listOfRes, setListOfRes] = useState([]);
 
   useEffect(() => {
     fetchRestaurants();
