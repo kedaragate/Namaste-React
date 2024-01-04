@@ -3,7 +3,6 @@ import { resList } from "../utils/mockData";
 import { useState, useEffect } from "react";
 import { async } from "regenerator-runtime";
 import { RESTAURANT_DATA_URL } from "../utils/constants";
-import ShimmerCard from "./ShimmerCard";
 
 const RestaurantContainer = () => {
   const [listOfRes, setListOfRes] = useState([]);
