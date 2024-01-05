@@ -106,7 +106,7 @@
   "scripts": {
     "test": "jest",
     "start": "parcel index.html",
-    "b": "parcel build index.html"
+    "build": "parcel build index.html"
   },
   "author": "Kedar Agate",
   "license": "ISC"

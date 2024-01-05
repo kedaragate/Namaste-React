@@ -40,10 +40,6 @@ const RestaurantContainer = () => {
     setFilteredListOfRes(filteredResult);
   }
 
-  if (listOfRes.length === 0) {
-    return <h1>Loading...</h1>;
-  }
-
   return (
     <>
       <button
@@ -61,9 +57,13 @@ const RestaurantContainer = () => {
         }}
       ></input>
       <section className="restaurant-container">
-        {filteredListOfRes.map((res) => {
-          return <RestaurantCard resData={res.info} key={res.info.id} />;
-        })}
+        {filteredListOfRes.length === 0 ? (
+          <h1>Loading your favourite food please wait...</h1>
+        ) : (
+          filteredListOfRes.map((res) => {
+            return <RestaurantCard resData={res.info} key={res.info.id} />;
+          })
+        )}
       </section>
     </>
   );

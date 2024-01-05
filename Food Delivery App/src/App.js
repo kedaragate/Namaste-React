@@ -10,7 +10,7 @@ const SearchBar = () => (
 const AppLayout = () => (
   <div className="app">
     <HeaderComponent />
-    <SearchBar />
+
     <RestaurantContainer />
   </div>
 );
