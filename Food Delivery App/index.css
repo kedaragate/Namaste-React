@@ -70,8 +70,8 @@ body {
 }
 
 .restaurant-card {
-  width: 250px;
-  flex-grow: 2;
+  width: 20%;
+  flex-grow: 20%;
   padding: 1rem;
   background-color: white;
   margin-right: 1rem;
@@ -97,4 +97,5 @@ body {
   height: 100%;
   object-fit: cover;
   object-position: center;
+  border-radius: 0.5rem;
 }
