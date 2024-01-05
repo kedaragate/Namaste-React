@@ -6,7 +6,7 @@ import { RESTAURANT_DATA_URL } from "../utils/constants";
 
 const RestaurantContainer = () => {
   const [listOfRes, setListOfRes] = useState([]);
-  const [filteredRes, setFilteredRes] = useState([]);
+  const [filteredListOfRes, setFilteredListOfRes] = useState([]);
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
@@ -18,39 +18,50 @@ const RestaurantContainer = () => {
     const result = await data.json();
 
     setListOfRes(
-      result?.data.cards[3].card?.card?.gridElements?.infoWithStyle?.restaurants
+      result?.data.cards[2].card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+    setFilteredListOfRes(
+      result?.data.cards[2].card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
 
-  function filterData() {
+  function filterTopRatedRestaurants() {
     let filteredData = listOfRes.filter((res) => {
       return res.info.avgRating > 4;
     });
-
     setListOfRes(filteredData);
   }
 
   function filterBasedOnSearch(text) {
-    const result = listOfRes.filter((res) => {
+    setSearchText(text);
+    const filteredResult = listOfRes.filter((res) => {
       return res.info.name.toLowerCase().includes(text.toLowerCase());
     });
-    setSearchText(text);
-    setFilteredRes(result);
+    setFilteredListOfRes(filteredResult);
+  }
+
+  if (listOfRes.length === 0) {
+    return <h1>Loading...</h1>;
   }
 
   return (
     <>
-      <button className="filter-btn" onClick={() => filterData()}>
+      <button
+        className="filter-btn"
+        onClick={() => filterTopRatedRestaurants()}
+      >
         Top Restaurants
       </button>
       <input
         type="text"
         className="search-text"
         value={searchText}
-        onChange={(e) => filterBasedOnSearch(e.target.value)}
+        onChange={(e) => {
+          return filterBasedOnSearch(e.target.value);
+        }}
       ></input>
       <section className="restaurant-container">
-        {filteredRes.map((res) => {
+        {filteredListOfRes.map((res) => {
           return <RestaurantCard resData={res.info} key={res.info.id} />;
         })}
       </section>
