@@ -1,7 +1,7 @@
 const HeaderComponent = () => (
   <header className="nav-bar">
     <div className="logo-container">
-      <h1 className="logo">Foodie</h1>
+      <h1 className="logo">fooDie</h1>
     </div>
     <div className="menu-container">
       <ul>

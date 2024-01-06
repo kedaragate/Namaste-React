@@ -1,8 +1,9 @@
 import RestaurantCard from "./RestaurantCard";
+
 import { resList } from "../utils/mockData";
 import { useState, useEffect } from "react";
 import { async } from "regenerator-runtime";
-import { RESTAURANT_DATA_URL } from "../utils/constants";
+import { RESTAURANT_DATA_URL, MORE_RESTAURANTS_URL } from "../utils/constants";
 
 const RestaurantContainer = () => {
   const [listOfRes, setListOfRes] = useState([]);
@@ -17,19 +18,38 @@ const RestaurantContainer = () => {
     const data = await fetch(RESTAURANT_DATA_URL);
     const result = await data.json();
 
-    setListOfRes(
-      result?.data.cards[2].card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-    setFilteredListOfRes(
-      result?.data.cards[2].card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+    const correctCardObjectOfRestaurants = function () {
+      return result?.data?.cards.filter((res) => {
+        if (res.hasOwnProperty("card")) {
+          if (res.card.hasOwnProperty("card")) {
+            if (res.card.card.hasOwnProperty("gridElements")) {
+              if (res.card.card.gridElements.hasOwnProperty("infoWithStyle")) {
+                if (
+                  res.card.card.gridElements.infoWithStyle.hasOwnProperty(
+                    "restaurants"
+                  )
+                ) {
+                  return true;
+                }
+              }
+            }
+          }
+        }
+      });
+    };
+    const finalResult =
+      correctCardObjectOfRestaurants()[0]?.card?.card?.gridElements
+        ?.infoWithStyle?.restaurants;
+
+    setListOfRes(finalResult);
+    setFilteredListOfRes(finalResult);
   };
 
   function filterTopRatedRestaurants() {
     let filteredData = listOfRes.filter((res) => {
       return res.info.avgRating > 4;
     });
-    setListOfRes(filteredData);
+    setFilteredListOfRes(filteredData);
   }
 
   function filterBasedOnSearch(text) {
@@ -58,7 +78,7 @@ const RestaurantContainer = () => {
       ></input>
       <section className="restaurant-container">
         {filteredListOfRes.length === 0 ? (
-          <h1>Loading your favourite food please wait...</h1>
+          <h1>Loading...</h1>
         ) : (
           filteredListOfRes.map((res) => {
             return <RestaurantCard resData={res.info} key={res.info.id} />;
